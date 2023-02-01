@@ -1,20 +1,14 @@
 'use strict';
 const createPDF = require("./pdf-generator");
+const fs = require("fs");
 
 async function runSample() {
 	console.log('running sample');
 
-	const data = {
-		title: "A new Brazilian School",
-		date: "05/12/2018",
-		name: "Rodolfo Luis Marcos",
-		age: 28,
-		birthdate: "12/07/1990",
-		course: "Computer Science",
-		obs: "Graduated in 2014 by Federal University of Lavras, work with Full-Stack development and E-commerce."
-	}
+	const reporteData = require("./output.json");
+	console.log('reporteData', reporteData);
 	
-	await createPDF(data);
+	await createPDF(reporteData);
 }
 
 if (module === require.main) {
