@@ -6,7 +6,7 @@ const handlebars = require("handlebars");
 async function createPDF(data){
 	try{
 		console.log('Creating PDF');
-		var templateHtml = fs.readFileSync(path.join(process.cwd(), 'template.html'), 'utf8');
+		var templateHtml = fs.readFileSync(path.join(process.cwd(), 'template.handlebars'), 'utf8');
 		var template = handlebars.compile(templateHtml);
 		var html = template(data);
 		console.log('Template recieved');
@@ -31,7 +31,8 @@ async function createPDF(data){
 		const browser = await puppeteer.launch({
 			headless: true,
 			args: [  
-			'--no-sandbox',
+				'--disable-gpu',
+				'--no-sandbox',
 		],
 		});
 		console.log('Puppeeteer launched');

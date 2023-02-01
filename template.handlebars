@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reporte</title>
+	<head>
+	<style type="text/css">
+		body{
+			width: 1200px;
+			margin: 0;
+			padding: 0px;
+			font-size: 16px;
+			line-height: 24px;
+			font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+			color: rgb(33,33,33);
+		}
+
+		.container{
+			display:flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+
+		.left-container{
+			width: 48%;
+		}
+
+		.right-container{
+			width: 48%;
+		}
+
+		.report-header{
+			padding: 15px;
+		}
+		.report-header .logo{
+			width: 250px;
+			height: auto;
+		}
+		
+		.report-title{
+			width: 70%;
+			padding: 15px;
+		}
+
+		.report-title h3{
+			color: #A52134;
+			font-size:25pt;
+			font-family:"Arial",sans-serif;
+		}
+
+		.report-title p{
+			color: #586670;
+			font-size:20pt;
+		}
+
+		.report-title table{
+			background-color: grey;
+			border-collapse: collapse; 
+			width: 100%;
+		}
+		.report-title table td{
+			padding: 10px; 
+			text-align: left;
+			font-size:14pt;
+			font-family:"Calibri",sans-serif;
+			color:white
+		}
+		.report-body{
+			padding: 15px;
+		}
+
+		.report-body h3{
+			color: #A52134;
+			font-size:18pt;
+			font-family:"Arial",sans-serif;
+		}
+
+		
+		table{
+			border-collapse: collapse; 
+			width: 100%;
+		}
+
+		.white-td{
+			padding: 10px; 
+			text-align: left;
+			font-size:12pt;
+			font-family:"Calibri",sans-serif;
+			color:black;
+			border: solid #E8E8E8 1.0pt;
+		}
+
+		.grey-td{
+			padding: 10px; 
+			text-align: left;
+			font-size:12pt;
+			font-family:"Calibri",sans-serif;
+			background-color: #E8E8E8;
+			color:black;
+			font-weight: bold;
+			border: solid white 1.0pt;
+		}
+
+		.report-footer{
+		}
+		
+	</style>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="report-header">
+		<img src="logo-equifax.png" class="logo">
+	</div>
+	<div class="report-title">
+		<h3>INFORME DE ARRIENDO</h3>
+		<p>El reporte de arriendo más completo del mercado.</p>
+		
+		<table>
+			<tr>
+				<td>{{name}}</td>
+				<td>{{document}}</td>
+				<td>Edad: {{age}}</td>
+			</tr>
+		</table>
+	
+	</div>
+	<div class="report-body">
+		<div class="report-body-personal">
+			<h3>1. Informacion Personal</h3>
+			<table>
+				<tr>
+				  <td class="grey-td">Fecha de Nacimiento</td>
+				  <td class="white-td">01/01/2000</td>
+				</tr>
+				<tr>
+				  <td class="grey-td">Nacionalidad</td>
+				  <td class="white-td">Español</td>
+				</tr>
+				<tr>
+				  <td class="grey-td">Dirección Electrónica</td>
+				  <td class="white-td">example@email.com</td>
+				</tr>
+				<tr>
+				  <td class="grey-td">Dirección</td>
+				  <td class="white-td">Calle de la Luz, 12</td>
+				</tr>
+				<tr>
+				  <td class="grey-td">Teléfono</td>
+				  <td class="white-td">+34 123 456 789</td>
+				</tr>
+				<tr>
+				  <td class="grey-td">Estado Civil</td>
+				  <td class="white-td">Soltero</td>
+				</tr>
+			  </table>
+		</div>
+		<div class="report-body-situacion-arrendatario">
+			<h3>2. Resumen de Situación del Arrendatario</h3>
+			<div class="container">
+				<div class="left-container">
+					<table>
+						<tr>
+						  <td class="grey-td">Deudas de Arriendo</td>
+						  <td class="white-td">$ 0</td>
+						</tr>
+						<tr>
+						  <td class="grey-td">Otras Deudas</td>
+						  <td class="white-td">$ 0</td>
+						</tr>
+						<tr>
+						  <td class="grey-td">Juicios de Lanzamientos</td>
+						  <td class="white-td">0</td>
+						</tr>
+						<tr>
+						  <td class="grey-td">Difunto</td>
+						  <td class="white-td">NO</td>
+						</tr>
+						<tr>
+						  <td class="grey-td">Interdicto</td>
+						  <td class="white-td">NO</td>
+						</tr>
+						</table>
+				</div>
+				<div class="right-container">
+					<table>
+						<tr>
+						  <td class="grey-td">Patrimonio Bienes Raíces</td>
+						  <td class="white-td">$ 89.650.900</td>
+						</tr>
+						<tr>
+						  <td class="grey-td">Indicador Socioeconómico
+							Equifax (ISE)</td>
+						  <td class="white-td">C2</td>
+						</tr>
+						<tr>
+						  <td class="grey-td">Número de Vehículos</td>
+						  <td class="white-td">2</td>
+						</tr>
+						<tr>
+						  <td class="grey-td">Sociedades</td>
+						  <td class="white-td">0</td>
+						</tr>
+						<tr>
+						  <td class="grey-td">Everclean</td>
+						  <td class="white-td">NO</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="report-body-situacion-arriendo">
+			<h3>3. Detalles de Deudas de Arriendo</h3>
+			<table>
+				<tr>
+				  <td class="grey-td">Arrendador</td>
+				  <td class="grey-td">Monto</td>
+				  <td class="grey-td">Fecha de Vencimiento</td>
+				  <td class="grey-td">Fecha de Publicación</td>
+				</tr>
+				{{#if array}}
+					{{#each array}}
+						<tr>
+							<td class="grey-td">{{Arrendador}}</td>
+							<td class="grey-td">{{Monto}}</td>
+							<td class="grey-td">{{Fecha de Vencimiento}}</td>
+							<td class="grey-td">{{Fecha de Publicación}}</td>
+						</tr>
+					{{/each}}
+				{{else}}
+					<tr>
+						<td class="white-td">-</td>
+						<td class="white-td">-</td>
+						<td class="white-td">-</td>
+						<td class="white-td">-</td>
+					</tr>
+				{{/if}}
+
+			</table>
+		</div>
+		<div class="report-body-juicios-lanzamiento">
+			<h3>4. Detalles de Juicios de Lanzamiento</h3>
+			<table>
+				<tr>
+				  <td class="grey-td">Rol</td>
+				  <td class="grey-td">Juzgado</td>
+				  <td class="grey-td">Fecha Seentencia</td>
+				  <td class="grey-td">Materia de Juicio</td>
+				  <td class="grey-td">Sentencia</td>
+				</tr>
+				{{#if array}}
+					{{#each array}}
+						<tr>
+							<td class="grey-td">{{Arrendador}}</td>
+							<td class="grey-td">{{Monto}}</td>
+							<td class="grey-td">{{Fecha de Vencimiento}}</td>
+							<td class="grey-td">{{Fecha de Publicación}}</td>
+							<td class="grey-td">{{Fecha de Publicación}}</td>
+						</tr>
+					{{/each}}
+				{{else}}
+					<tr>
+						<td class="white-td">-</td>
+						<td class="white-td">-</td>
+						<td class="white-td">-</td>
+						<td class="white-td">-</td>
+					</tr>
+				{{/if}}
+
+			</table>
+		</div>
+		<div class="report-body-otras-deudas">
+			<h3>5. Resumen de Otras Deudas</h3>
+			<table>
+				<tr>
+					<td class="grey-td">Fuente</td>
+					<td class="grey-td">Cantidad</td>
+					<td class="grey-td">Monto Total de Deudas</td>
+					<td class="grey-td">Último Vencimiento</td>
+				</tr>
+				<tr>
+					<td class="grey-td">Boletín Comercial</td>
+					<td class="white-td">-</td>
+					<td class="white-td">-</td>
+					<td class="white-td">-</td>
+				</tr>
+				<tr>
+					<td class="grey-td">Boletín Electrónico Dicom</td>
+					<td class="white-td">-</td>
+					<td class="white-td">-</td>
+					<td class="white-td">-</td>
+				</tr>
+				<tr>
+					<td class="grey-td">Boletín Laboral y Previsional</td>
+					<td class="white-td">-</td>
+					<td class="white-td">-</td>
+					<td class="white-td">-</td>
+				</tr>
+				<tr>
+					<td class="grey-td">Boletín ICOM (Casas Comerciales)</td>
+					<td class="white-td">-</td>
+					<td class="white-td">-</td>
+					<td class="white-td">-</td>
+				</tr>
+			</table>
+		</div>
+		<div class="report-body-direcciones">
+			<h3>6. Otras Direcciones Registradas</h3>
+			<table>
+				<tr>
+				  <td class="grey-td">Dirección</td>
+				  <td class="grey-td">Número</td>
+				  <td class="grey-td">Comuna</td>
+				  <td class="grey-td">Región</td>
+				  <td class="grey-td">Fecha de Actualización</td>
+				</tr>
+				{{#if array}}
+					{{#each array}}
+						<tr>
+							<td class="grey-td">{{Arrendador}}</td>
+							<td class="grey-td">{{Monto}}</td>
+							<td class="grey-td">{{Fecha de Vencimiento}}</td>
+							<td class="grey-td">{{Fecha de Publicación}}</td>
+							<td class="grey-td">{{Fecha de Publicación}}</td>
+						</tr>
+					{{/each}}
+				{{else}}
+					<tr>
+						<td class="white-td">-</td>
+						<td class="white-td">-</td>
+						<td class="white-td">-</td>
+						<td class="white-td">-</td>
+					</tr>
+				{{/if}}
+
+			</table>
+		</div>
+	</div>
+	<div class="report-footer">
+	</div>
+</body>
+</html>
