@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
 const handlebars = require("handlebars");
 
 async function createPDF(data){
+	console.log('data', data);
 	try{
 		console.log('Creating PDF');
 		var templateHtml = fs.readFileSync(path.join(process.cwd(), 'template.html'), 'utf8');
@@ -13,7 +14,7 @@ async function createPDF(data){
 		var milis = new Date();
 		milis = milis.getTime();
 
-		var pdfPath = path.join('pdf', `${data.name}-${milis}.pdf`);
+		var pdfPath = path.join('pdf', `${data.nombre}-${milis}.pdf`);
 
 		var options = {
 			width: '1230px',
@@ -37,7 +38,6 @@ async function createPDF(data){
 		});
 		console.log('Puppeeteer launched');
 		var page = await browser.newPage();
-		console.log('Trying to go to page with this html: ' + html);
 		await page.setContent(html, {
 			waitUntil: 'networkidle0'
 		});

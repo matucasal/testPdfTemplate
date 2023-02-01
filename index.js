@@ -1,14 +1,14 @@
 'use strict';
 const createPDF = require("./pdf-generator");
-const fs = require("fs");
+const processJson = require("./process-json");
 
 async function runSample() {
 	console.log('running sample');
 
 	const reporteData = require("./output.json");
-	console.log('reporteData', reporteData);
+	const dataProcessed = processJson(reporteData);
 	
-	await createPDF(reporteData);
+	await createPDF(dataProcessed);
 }
 
 if (module === require.main) {
