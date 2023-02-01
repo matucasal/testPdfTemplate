@@ -31,7 +31,7 @@ async function createPDF(data){
 		const browser = await puppeteer.launch({
 			headless: true,
 			args: [  
-				//'--disable-gpu',
+				'--disable-gpu',
 				'--no-sandbox',
 		],
 		});
