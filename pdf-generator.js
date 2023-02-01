@@ -37,8 +37,8 @@ async function createPDF(data){
 		console.log('Puppeeteer launched');
 		var page = await browser.newPage();
 		console.log('Trying to go to page with this html: ' + html);
-		await page.goto(`data:text/html;charset=UTF-8,${html}`, {
-			waitUntil: 'networkidle0'
+		await page.setContent(html, {
+			waitUntil: 'domcontentloaded'
 		});
 		console.log('page loaded');
 		console.log(page);
