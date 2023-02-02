@@ -76,7 +76,35 @@
 			font-family:"Arial",sans-serif;
 		}
 
+
+		.report-body .report-body-score{
+			margin-top: 50px;
+		}
+
+		.report-body .report-body-resumen{
+			margin-top: 120px;
+		}
+
+		.report-body .report-body-saldos-vencer{
+			margin-top: 120px;
+		}
+
+		.report-body .report-body-saldos-vencer-sistema-financiero{
+			margin-top: 120px;
+		}
+
+		.report-body .report-body-morosidades{
+			margin-top: 120px;
+		}
 		
+		.report-body .report-body-deuda-historica{
+			margin-top: 120px;
+		}
+
+		.report-body .creditos{
+			margin-top: 120px;
+		}
+
 		table{
 			border-collapse: collapse; 
 			width: 100%;
@@ -189,22 +217,61 @@
 				</div>
 			</div>
 		</div>
-		<div class="report-body-situacion-arriendo">
-			<h3>3. Detalles de Deudas de Arriendo</h3>
+		<div class="report-body-saldos-vencer">
+			<h3>3. Análisis de saldos por Vencer (SB + SEPS)</h3>
 			<table>
+				<tr><th class="header-th" colspan="8">Análisis de saldos por Vencer (SB + SEPS)</th></tr>
 				<tr>
-				  <td class="grey-td">Arrendador</td>
-				  <td class="grey-td">Monto</td>
-				  <td class="grey-td">Fecha de Vencimiento</td>
-				  <td class="grey-td">Fecha de Publicación</td>
+				  <td class="grey-td">Periodo de Operaciones por Vencer</td>
+				  <td class="grey-td">Salods por Vencer</td>
 				</tr>
-				{{#if array}}
-					{{#each array}}
+				<tr>
+					<td class="white-td">Actual</td>
+					<td class="white-td">{{lookup analisisSaldosPorVencer360 'actual'}}</td>
+				</tr>
+				<tr>
+					<td class="white-td">1 a 3 meses</td>
+					<td class="white-td">{{lookup analisisSaldosPorVencer360 '1a3meses'}}</td>
+				</tr>
+				<tr>
+					<td class="white-td">3 a 6 meses</td>
+					<td class="white-td">{{lookup analisisSaldosPorVencer360 '3a6meses'}}</td>
+				</tr>
+				<tr>
+					<td class="white-td">6 a 12 meses</td>
+					<td class="white-td">{{lookup analisisSaldosPorVencer360 '6a12meses'}}</td>
+				</tr>
+				<tr>
+					<td class="white-td">+ 12 meses</td>
+					<td class="white-td">{{lookup analisisSaldosPorVencer360 'mas12meses'}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="report-body-saldos-vencer-sistema-financiero">
+			<h3>4. Análisis de saldos por Vencer Sistema Financiero</h3>
+			<table>
+				<tr><th class="header-th" colspan="8">Análisis de saldos por Vencer Sistema Financiero</th></tr>
+				<tr>
+				  <td class="grey-td">Fecha</td>
+				  <td class="grey-td">Institución Financiera</td>
+				  <td class="grey-td">Total por Vencer</td>
+				  <td class="grey-td">Por vencer 1 a 30 días</td>
+				  <td class="grey-td">Por vencer 1-3 meses</td> 
+				  <td class="grey-td">Por vencer 3-6 meses</td>
+				  <td class="grey-td">Por vencer 6-12 meses</td>
+				  <td class="grey-td">Por vencer más de 12 meses</td>
+				</tr>
+				{{#if analisisSaldosPorVencerSistemaFinanciero.length}}
+					{{#each analisisSaldosPorVencerSistemaFinanciero}}
 						<tr>
-							<td class="grey-td">{{Arrendador}}</td>
-							<td class="grey-td">{{Monto}}</td>
-							<td class="grey-td">{{Fecha de Vencimiento}}</td>
-							<td class="grey-td">{{Fecha de Publicación}}</td>
+							<td class="white-td">{{this.FechaCorte}}</td>
+							<td class="white-td">{{this.Institucion}}</td>
+							<td class="white-td">{{this.TotalPorVencer}}</td>
+							<td class="white-td">{{this.PorVencer0a1}}</td>
+							<td class="white-td">{{this.PorVencer1a3}}</td>
+							<td class="white-td">{{this.PorVencer3a6}}</td>
+							<td class="white-td">{{this.PorVencer6a12}}</td>
+							<td class="white-td">{{this.PorVencer12}}</td>
 						</tr>
 					{{/each}}
 				{{else}}
@@ -218,24 +285,59 @@
 
 			</table>
 		</div>
-		<div class="report-body-juicios-lanzamiento">
-			<h3>4. Detalles de Juicios de Lanzamiento</h3>
+		<div class="report-body-morosidades">
+			<h3>5. Resumen de Morosidades</h3>
 			<table>
+				<tr><th class="header-th" colspan="8">Resumen de Morosidades Impagas (SB+ SEPS)</th></tr>
 				<tr>
-				  <td class="grey-td">Rol</td>
-				  <td class="grey-td">Juzgado</td>
-				  <td class="grey-td">Fecha Seentencia</td>
-				  <td class="grey-td">Materia de Juicio</td>
-				  <td class="grey-td">Sentencia</td>
+				  <td class="grey-td"><p style="font-size:24px" >Morosidades (mes actual)</p></td>
+				  <td class="grey-td"><p style="font-size:24px" >{{morosidades.Morosidades}}</p> Operaciones en Mora</td>
+				  <td class="grey-td"><p style="font-size:24px" >$ {{morosidades.MontoTotalMorosidades}}</p> Saldo Total en Mora</td>
+				  <td class="grey-td"><p style="font-size:24px" > {{morosidades.TotalNumeroOperaciones}}</p> Total Operaciones Año</td>
 				</tr>
-				{{#if array}}
-					{{#each array}}
+			</table>
+		</div>
+		<div class="report-body-deuda-historica">
+			<h3>6. Deuda Histórica</h3>
+			<table>
+				<tr><th class="header-th" colspan="16">Deuda Histórica (últimos 10 registros)</th></tr>
+				<tr>
+					<td class="grey-td">Mes</td>
+					<td class="grey-td">Por Vencer</td>
+					<td class="grey-td">No Deven.</td>
+					<td class="grey-td">1 mes</td>
+					<td class="grey-td">2 meses</td>
+					<td class="grey-td">3 meses</td>
+					<td class="grey-td">6 meses</td>
+					<td class="grey-td">9 meses</td>
+					<td class="grey-td">12 meses</td>
+					<td class="grey-td">24 meses</td>
+					<td class="grey-td">36 meses</td>
+					<td class="grey-td">Mas 62 meses</td>
+					<td class="grey-td">Dem. Jud.</td>
+					<td class="grey-td">Cart. Cast.</td>
+					<td class="grey-td">Saldo Deuda</td>
+					<td class="grey-td">Opcion</td>
+				</tr>
+				{{#if deudaHistorica.length}}
+					{{#each deudaHistorica}}
 						<tr>
-							<td class="grey-td">{{Arrendador}}</td>
-							<td class="grey-td">{{Monto}}</td>
-							<td class="grey-td">{{Fecha de Vencimiento}}</td>
-							<td class="grey-td">{{Fecha de Publicación}}</td>
-							<td class="grey-td">{{Fecha de Publicación}}</td>
+							<td class="white-td">{{this.FechaCorte}}</td>
+							<td class="white-td">{{this.PorVencer}}</td>
+							<td class="white-td">{{this.NoDevengaInt}}</td>
+							<td class="white-td">{{this.Vencido0a1}}</td>
+							<td class="white-td">{{this.Vencido1a2}}</td>
+							<td class="white-td">{{this.Vencido2a3}}</td>
+							<td class="white-td">{{this.Vencido3a6}}</td>
+							<td class="white-td">{{this.Vencido6a9}}</td>
+							<td class="white-td">{{this.Vencido9a12}}</td>
+							<td class="white-td">{{this.Vencido12a24}}</td>
+							<td class="white-td">{{this.Vencido24}}</td>
+							<td class="white-td">{{this.Vencido36}}</td>
+							<td class="white-td">{{this.DemandaJudicial}}</td>
+							<td class="white-td">{{this.CarteraCastigada}}</td>
+							<td class="white-td">{{this.SaldoDeuda}}</td>
+							<td class="white-td">{{this.Opcion}}</td>
 						</tr>
 					{{/each}}
 				{{else}}
@@ -246,62 +348,36 @@
 						<td class="white-td">-</td>
 					</tr>
 				{{/if}}
-
+				
 			</table>
 		</div>
-		<div class="report-body-otras-deudas">
-			<h3>5. Resumen de Otras Deudas</h3>
+		<div class="report-body-creditos">
+			<h3>7. Créditos otorgados en los últimos 12 meses (No incluye tarjetas de crédito)</h3>
 			<table>
+				<tr><th class="header-th" colspan="9">Créditos otorgados en los últimos 12 meses (No incluye tarjetas de crédito)</th></tr>
 				<tr>
-					<td class="grey-td">Fuente</td>
-					<td class="grey-td">Cantidad</td>
-					<td class="grey-td">Monto Total de Deudas</td>
-					<td class="grey-td">Último Vencimiento</td>
+				  <td class="grey-td">Institución Financiera</td>
+				  <td class="grey-td">Estado Operación</td>
+				  <td class="grey-td">Tipo Crédito</td>
+				  <td class="grey-td">Valor Operación</td> 
+				  <td class="grey-td">Saldo Titular</td>
+				  <td class="grey-td">Saldo Codeudor</td>
+				  <td class="grey-td">Saldo Garante</td>
+				  <td class="grey-td">Fecha Concesión</td>
+				  <td class="grey-td">Fecha Vencimiento</td>
 				</tr>
-				<tr>
-					<td class="grey-td">Boletín Comercial</td>
-					<td class="white-td">-</td>
-					<td class="white-td">-</td>
-					<td class="white-td">-</td>
-				</tr>
-				<tr>
-					<td class="grey-td">Boletín Electrónico Dicom</td>
-					<td class="white-td">-</td>
-					<td class="white-td">-</td>
-					<td class="white-td">-</td>
-				</tr>
-				<tr>
-					<td class="grey-td">Boletín Laboral y Previsional</td>
-					<td class="white-td">-</td>
-					<td class="white-td">-</td>
-					<td class="white-td">-</td>
-				</tr>
-				<tr>
-					<td class="grey-td">Boletín ICOM (Casas Comerciales)</td>
-					<td class="white-td">-</td>
-					<td class="white-td">-</td>
-					<td class="white-td">-</td>
-				</tr>
-			</table>
-		</div>
-		<div class="report-body-direcciones">
-			<h3>6. Otras Direcciones Registradas</h3>
-			<table>
-				<tr>
-				  <td class="grey-td">Dirección</td>
-				  <td class="grey-td">Número</td>
-				  <td class="grey-td">Comuna</td>
-				  <td class="grey-td">Región</td>
-				  <td class="grey-td">Fecha de Actualización</td>
-				</tr>
-				{{#if array}}
-					{{#each array}}
+				{{#if creditosUltimosMeses.length}}
+					{{#each creditosUltimosMeses}}
 						<tr>
-							<td class="grey-td">{{Arrendador}}</td>
-							<td class="grey-td">{{Monto}}</td>
-							<td class="grey-td">{{Fecha de Vencimiento}}</td>
-							<td class="grey-td">{{Fecha de Publicación}}</td>
-							<td class="grey-td">{{Fecha de Publicación}}</td>
+							<td class="white-td">{{this.Institucion}}</td>
+							<td class="white-td">{{this.EstadoOperacion}}</td>
+							<td class="white-td">{{this.TipoCredito}}</td>
+							<td class="white-td">{{this.ValorOperacion}}</td>
+							<td class="white-td">{{this.Titular}}</td>
+							<td class="white-td">{{this.Codeudor}}</td>
+							<td class="white-td">{{this.Garante}}</td>
+							<td class="white-td">{{this.FechaConcesion}}</td>
+							<td class="white-td">{{this.FechaVencimiento}}</td>
 						</tr>
 					{{/each}}
 				{{else}}

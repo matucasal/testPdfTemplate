@@ -13,8 +13,29 @@ function processJson(json){
 		'carteraCastigada' : json['Datos Resumen Informe 360'].find(x => x.Tipo === "CarteraCastigada"),
 	}
 
-	console.log(resumenInforme);
-	return {nombre, documento, historico360, resumenInforme}
+	
+
+	const analisisSaldosPorVencerSistemaFinanciero =  json['Analisis saldos por vencer sistema financiero'];
+	if(analisisSaldosPorVencerSistemaFinanciero.length > 0)
+		analisisSaldosPorVencerSistemaFinanciero[analisisSaldosPorVencerSistemaFinanciero.length - 1]['Institucion'] = 'TOTAL';
+	
+	const morosidades = json['Resumen Protestos y Morosidades 360'][0];
+
+	const deudaHistorica = json['Recursivo deuda historica 3601'].slice(0,10);
+
+	const analisisSaldosPorVencer360 = {
+		'actual' : json['Analisis de Saldos por Vencer 360'].find(x => x.PeriodoOperacion === "Actual").SaldosXVencer,
+		'1a3meses' : json['Analisis de Saldos por Vencer 360'].find(x => x.PeriodoOperacion === "1 a 3 meses").SaldosXVencer,
+		'3a6meses' : json['Analisis de Saldos por Vencer 360'].find(x => x.PeriodoOperacion === "3 a 6 meses").SaldosXVencer,
+		'6a12meses' : json['Analisis de Saldos por Vencer 360'].find(x => x.PeriodoOperacion === "6 a 12 meses").SaldosXVencer,
+		'mas12meses' : json['Analisis de Saldos por Vencer 360'].find(x => x.PeriodoOperacion === "+12 meses").SaldosXVencer,
+	}
+
+	const creditosUltimosMeses = json['Creditos otorgados 12 ultimos meses Educativo 3600'];
+	if(creditosUltimosMeses.length > 0)
+		creditosUltimosMeses[creditosUltimosMeses.length - 1]['Institucion'] = 'TOTAL ÚLTIMOS 12 MESES';
+
+	return {nombre, documento, historico360, resumenInforme, analisisSaldosPorVencerSistemaFinanciero,morosidades, deudaHistorica, analisisSaldosPorVencer360, creditosUltimosMeses}
 }
 
 module.exports = processJson;

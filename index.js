@@ -1,4 +1,5 @@
 'use strict';
+const { Exception } = require("handlebars");
 const createPDF = require("./pdf-generator");
 const processJson = require("./process-json");
 
@@ -7,7 +8,7 @@ async function runSample() {
 
 	const reporteData = require("./output.json");
 	const dataProcessed = processJson(reporteData);
-	
+	console.log('dataProcessed', dataProcessed);
 	await createPDF(dataProcessed);
 }
 
