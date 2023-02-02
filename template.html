@@ -82,13 +82,22 @@
 			width: 100%;
 		}
 
+		.header-th{
+			text-align: center;
+			padding: 10px; 
+			font-size:12.5pt;
+			font-family:"Calibri",sans-serif;
+			color:white;
+			background-color: #474747;
+		}
+
 		.white-td{
 			padding: 10px; 
 			text-align: left;
 			font-size:12pt;
 			font-family:"Calibri",sans-serif;
 			color:black;
-			border: solid #E8E8E8 1.0pt;
+			border: solid #c4c4c4 1.0pt;
 		}
 
 		.grey-td{
@@ -96,7 +105,7 @@
 			text-align: left;
 			font-size:12pt;
 			font-family:"Calibri",sans-serif;
-			background-color: #E8E8E8;
+			background-color: #c4c4c4;
 			color:black;
 			font-weight: bold;
 			border: solid white 1.0pt;
@@ -125,84 +134,56 @@
 	
 	</div>
 	<div class="report-body">
-		<div class="report-body-personal">
-			<h3>1. Informacion Personal</h3>
+		<div class="report-body-score">
+			<h3>1. Histórico de Score</h3>
 			<table>
+				<tr><th class="header-th" colspan="2">Histórico de Score</th></tr>
 				<tr>
-				  <td class="grey-td">Fecha de Nacimiento</td>
-				  <td class="white-td">01/01/2000</td>
+				  <td class="grey-td">-12 Meses</td>
+				  <td class="white-td">{{lookup historico360 '12meses'}}</td>
 				</tr>
 				<tr>
-				  <td class="grey-td">Nacionalidad</td>
-				  <td class="white-td">Español</td>
+				  <td class="grey-td">-6 Meses</td>
+				  <td class="white-td">{{lookup historico360 '6meses'}}</td>
 				</tr>
 				<tr>
-				  <td class="grey-td">Dirección Electrónica</td>
-				  <td class="white-td">example@email.com</td>
+				  <td class="grey-td">Actual</td>
+				  <td class="white-td">{{lookup historico360 'actual'}}</td>
 				</tr>
-				<tr>
-				  <td class="grey-td">Dirección</td>
-				  <td class="white-td">Calle de la Luz, 12</td>
-				</tr>
-				<tr>
-				  <td class="grey-td">Teléfono</td>
-				  <td class="white-td">+34 123 456 789</td>
-				</tr>
-				<tr>
-				  <td class="grey-td">Estado Civil</td>
-				  <td class="white-td">Soltero</td>
-				</tr>
-			  </table>
+			</table>
 		</div>
-		<div class="report-body-situacion-arrendatario">
-			<h3>2. Resumen de Situación del Arrendatario</h3>
+		<div class="report-body-resumen">
+			<h3>2. Resumen</h3>
 			<div class="container">
 				<div class="left-container">
 					<table>
 						<tr>
-						  <td class="grey-td">Deudas de Arriendo</td>
-						  <td class="white-td">$ 0</td>
+						  <td class="grey-td">Saldo Total Operaciones Impagos</td>
+						  <td class="white-td">$ {{#if (lookup resumenInforme.opeImpagos 'MontoTotalOpeImpagos')}}{{lookup resumenInforme.opeImpagos 'MontoTotalOpeImpagos'}}{{else}} 0 {{/if}}</td>
 						</tr>
 						<tr>
-						  <td class="grey-td">Otras Deudas</td>
-						  <td class="white-td">$ 0</td>
+						  <td class="grey-td">Saldo Total Operaciones Demanada Judicial</td>
+						  <td class="white-td">$ {{#if (lookup resumenInforme.demandaJudicial 'MontoTotalOpeImpagos')}}{{lookup resumenInforme.demanadaJudicial 'MontoTotalOpeImpagos'}}{{else}} 0 {{/if}}</td>
 						</tr>
 						<tr>
-						  <td class="grey-td">Juicios de Lanzamientos</td>
-						  <td class="white-td">0</td>
+						  <td class="grey-td">Saldo Total Operaciones Cartera Castigada</td>
+						  <td class="white-td">$ {{#if (lookup resumenInforme.carteraCastigada 'MontoTotalOpeImpagos')}}{{lookup resumenInforme.carteraCastigada 'MontoTotalOpeImpagos'}}{{else}} 0 {{/if}}</td>
 						</tr>
-						<tr>
-						  <td class="grey-td">Difunto</td>
-						  <td class="white-td">NO</td>
-						</tr>
-						<tr>
-						  <td class="grey-td">Interdicto</td>
-						  <td class="white-td">NO</td>
-						</tr>
-						</table>
+					</table>
 				</div>
 				<div class="right-container">
 					<table>
 						<tr>
-						  <td class="grey-td">Patrimonio Bienes Raíces</td>
-						  <td class="white-td">$ 89.650.900</td>
+						  <td class="grey-td">Total Operaciones Impagos</td>
+						  <td class="white-td">{{#if (lookup resumenInforme.opeImpagos 'NumTotalOpeImpagos')}}{{lookup resumenInforme.opeImpagos 'NumTotalOpeImpagos'}}{{else}} 0 {{/if}}</td>
 						</tr>
 						<tr>
-						  <td class="grey-td">Indicador Socioeconómico
-							Equifax (ISE)</td>
-						  <td class="white-td">C2</td>
+						  <td class="grey-td">Total Operaciones Demanda Judicial</td>
+						  <td class="white-td">$ {{#if (lookup resumenInforme.demandaJudicial 'NumTotalOpeImpagos')}}{{lookup resumenInforme.demanadaJudicial 'NumTotalOpeImpagos'}}{{else}} 0 {{/if}}</td>
 						</tr>
 						<tr>
-						  <td class="grey-td">Número de Vehículos</td>
-						  <td class="white-td">2</td>
-						</tr>
-						<tr>
-						  <td class="grey-td">Sociedades</td>
-						  <td class="white-td">0</td>
-						</tr>
-						<tr>
-						  <td class="grey-td">Everclean</td>
-						  <td class="white-td">NO</td>
+						  <td class="grey-td">Total Operaciones Cartera Castigada</td>
+						  <td class="white-td">$ {{#if (lookup resumenInforme.carteraCastigada 'NumTotalOpeImpagos')}}{{lookup resumenInforme.carteraCastigada 'NumTotalOpeImpagos'}}{{else}} 0 {{/if}}</td>
 						</tr>
 					</table>
 				</div>
